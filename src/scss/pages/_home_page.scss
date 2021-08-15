@@ -1,0 +1,89 @@
+.home-page {
+  .sorter {
+    margin-bottom: 20px;
+    position: fixed;
+    top: 10px;
+  }
+
+  #ascii-faces-wrapper {
+    margin-top: 40px;
+    .ascii-faces-and-ad {
+      .ascii-faces {
+        min-height: 100vh;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: space-evenly;
+
+        .ascii-face {
+          border: 1px solid gray;
+          border-radius: 10px;
+          padding: 10px;
+          display: grid;
+          grid-template-rows: 1fr repeat(4, min-content);
+
+          .face {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+
+            &.eight-pixels {
+              font-size: 8px;
+            }
+
+            &.ten-pixels {
+              font-size: 10px;
+            }
+
+            &.twelve-pixels {
+              font-size: 12px;
+            }
+
+            &.sixteen-pixels {
+              font-size: 16px;
+            }
+
+            &.twenty-pixels {
+              font-size: 20px;
+            }
+
+            &.twenty-six-pixels {
+              font-size: 26px;
+            }
+
+            &.thrity-two-pixels {
+              font-size: 32px;
+            }
+          }
+
+          .price {
+            font-size: 17px;
+            font-weight: 600;
+            margin-bottom: 5px;
+          }
+        }
+      }
+
+      .ad-container {
+        width: fit-content;
+        margin: 10px auto;
+        display: block;
+
+        .text {
+          text-align: center;
+          font-size: 25px;
+          font-weight: 600;
+        }
+
+        .ad {
+          height: 150px;
+        }
+      }
+    }
+    .state {
+      text-align: center;
+      padding: 50px 0;
+    }
+  }
+}
