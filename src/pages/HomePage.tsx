@@ -135,8 +135,37 @@ export class HomePage extends React.Component {
 
   getDateTimeLabel(dateTime: string): string {
     const dateTimeLabelFormat = "EEE, d MMM yyyy, h:mm a";
-    return DateTime.fromISO(dateTime).toFormat(dateTimeLabelFormat);
+
+    const date = DateTime.fromISO(dateTime);
+    const currentDate = DateTime.now();
+    const dateAddOneWeek = date.plus({ week: 1 });
+
+    // if date is older that a week, show full date
+    if (dateAddOneWeek < currentDate)
+      return DateTime.fromISO(dateTime).toFormat(dateTimeLabelFormat);
+
+    return this.timeAgo(date);
   }
+
+  timeAgo = (dateTime: DateTime): string => {
+    const units: Intl.RelativeTimeFormatUnit[] = [
+      "year",
+      "month",
+      "week",
+      "day",
+      "hour",
+      "minute",
+      "second",
+    ];
+
+    const diff = dateTime.diffNow().shiftTo(...units);
+    const unit = units.find((unit) => diff.get(unit) !== 0) || "second";
+
+    const relativeFormatter = new Intl.RelativeTimeFormat("en", {
+      numeric: "auto",
+    });
+    return relativeFormatter.format(Math.trunc(diff.as(unit)), unit);
+  };
 
   getFormattedAmount = (amount: number): string => {
     const float = parseFloat(`${amount}`);
